@@ -2,7 +2,7 @@ import java.util.Vector;
 import java.util.Enumeration;
 
 public class Customer {
-   private String _name;
+    private String _name;
    private Vector _rentals = new Vector();
 
    public Customer (String name){
@@ -12,33 +12,11 @@ public class Customer {
    public void addRental(Rental arg) {
       _rentals.addElement(arg);
    }
-   
+
    public String getName (){
       return _name;
    };
-  
-   //determine amounts for each line
-   private double amountFor(Rental aRental){
-        double thisAmount = 0;   
-        
-        switch (aRental.getMovie().getPriceCode()) {
-           case Movie.REGULAR:
-              thisAmount += 2;
-              if (aRental.getDaysRented() > 2)
-                 thisAmount += (aRental.getDaysRented() - 2) * 1.5;
-              break;
-           case Movie.NEW_RELEASE:
-              thisAmount += aRental.getDaysRented() * 3;
-              break;
-           case Movie.CHILDRENS:
-              thisAmount += 1.5;
-              if (aRental.getDaysRented() > 3)
-                 thisAmount += (aRental.getDaysRented() - 3) * 1.5;
-               break;
-        }
-        return thisAmount;
-   }
-   
+     
   public String statement() {
      double totalAmount = 0;
      int frequentRenterPoints = 0;
@@ -48,7 +26,7 @@ public class Customer {
         double thisAmount = 0;
         Rental each = (Rental) rentals.nextElement();
 
-        thisAmount = amountFor(each);
+        thisAmount = each.getCharge();
         
         // add frequent renter points
         frequentRenterPoints ++;
